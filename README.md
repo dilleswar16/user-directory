@@ -1,5 +1,21 @@
 # User Directory API
 
+---
+
+## Table of Contents
+- [Overview](#overview)
+- [API Endpoints](#endpoints)
+  - [Load Users into Database](#load-users-into-database)
+  - [Get All Users](#get-all-users)
+  - [Get Users by Role](#get-users-by-role)
+  - [Get Users Sorted by Age](#get-users-sorted-by-age)
+  - [Get User by ID](#get-user-by-id)
+  - [Get User by SSN](#get-user-by-ssn)
+
+
+
+---
+
 ## Overview
 
 A REST API for managing user data by loading from an external API and performing CRUD operations. Features include:
@@ -7,7 +23,7 @@ A REST API for managing user data by loading from an external API and performing
 - Retrieve users with filtering and sorting
 - Search users by ID or SSN
 
-**Base URL:** `http://localhost:8080/api/users`
+**Base URL:** `https://user-directory-service.onrender.com/`
 
 ## API Endpoints
 
@@ -20,34 +36,33 @@ Fetch user data from external API and store in database.
 **Example Request:**
 ```http
 POST /api/users/load
+```
 
-Response:
+**Response:**
 
+```
 {
   "message": "Successfully loaded ** users into the database."
 }
 ```
 
-Status Codes:
+### Status Codes
 
 200 OK: Users loaded successfully
 
 500 Internal Server Error: Loading failed
 
-📄 Get All Users
-GET /
+### 📄 Get All Users
+**`GET /`**
 
 Retrieve all users from the database.
 
-Example Request:
-
-http
-Copy
+**Example Request**:
+```http
 GET /api/users
-Example Response:
-
-json
-Copy
+```
+**Example Response** 📋
+```json
 [
   {
     "id": 1,
@@ -59,27 +74,46 @@ Copy
   },
   ...
 ]
-Status Codes:
+```
+
+### Status Codes:
 
 200 OK: Users found
 
 204 No Content: No users available
 
-🔍 Get Users by Role
-GET /role/{role}
+
+### 🔍 Get Users by Role
+**`GET /role/{role}`**
 
 Filter users by their role.
 
-Parameters:
+**Parameters:**
 
-Name	Type	Description
-role	String	User role to filter
-Example Request:
+| Name | Type   | Description          |
+|------|--------|----------------------|
+| role | String | User role to filter  |
 
-http
-Copy
-GET /api/users/role/Developer
-Status Codes:
+**Example Request**:
+
+```http
+GET /api/users/role/admin
+```
+**Example Response** 📋
+```json
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "role": "ADMIN",
+    "age": 30,
+    "ssn": "123-45-6789"
+  }
+]
+
+```
+
+### Status Codes:
 
 200 OK: Users found
 
@@ -87,24 +121,26 @@ Status Codes:
 
 500 Internal Server Error: Server error
 
-🔄 Get Sorted Users by Age
-GET /sorted
+
+### 🔄 Get Sorted Users by Age
+**`GET /sorted`**
 
 Retrieve users sorted by age.
 
-Parameters:
+**Parameters:**
 
-Name	Type	Description	Default
-order	String	Sorting order (asc/desc)	asc
-Example Request:
+| Name    | Type   | Default | Description               |
+|---------|--------|---------|---------------------------|
+| order   | String | asc     | Sorting order (asc/desc)  |
 
-http
-Copy
+**Example Request**:
+
+```http
 GET /api/users/sorted?order=desc
-Example Response:
+```
 
-json
-Copy
+Example Response:
+```json
 [
   {
     "id": 5,
@@ -117,49 +153,86 @@ Copy
     ...
   }
 ]
-🔎 Get User by ID
-GET /id/{id}
+```
+
+### 🔎 Get User by ID
+**`GET /id/{id}`**
 
 Retrieve single user by unique identifier.
 
-Parameters:
+**Parameters:**
 
-Name	Type	Description
-id	Long	User ID to search
-Example Request:
+| Name | Type | Description       |
+|------|------|-------------------|
+| id   | Long | User ID to search |
 
-http
-Copy
+
+**Example Request:**
+
+```http
 GET /api/users/id/1
-🔍 Get User by SSN
-GET /ssn/{ssn}
+```
+
+**Example Response:**
+```json
+  {
+    "id": 5,
+    "age": 45,
+    ...
+  }
+```
+
+
+### 🔍 Get User by SSN
+**`GET /ssn/{ssn}`**
 
 Retrieve user by Social Security Number.
 
-Parameters:
+**Parameters:**
 
-Name	Type	Description
-ssn	String	SSN to search for
-Example Request:
+| Name | Type   | Description       |
+|------|--------|-------------------|
+| ssn  | String | SSN to search for |
 
-http
-Copy
+
+**Example Request:**
+
+```http
 GET /api/users/ssn/123-45-6789
-Error Handling
-Sample error response:
+```
+**Example Response:**
+```json
+  {
+    "id": 5,
+    "age": 45,
+    "ssn": "123-45-6789"
+    ...
+  }
+```
 
-json
-Copy
+***Sample error response:***
+```
 {
-  "status": 500,
-  "message": "Failed to load users. Error: Connection timeout"
+  "status": 404,
+  "message": "Not found"
 }
-Common Status Codes:
+```
 
-400 Bad Request: Invalid parameters
+### Notes
+- **Cross-Origin Resource Sharing (CORS):** The API allows requests from any origin.
+- **Logging:** Each endpoint logs its request and response flow, which is useful for debugging and tracing issues.
+- **Swagger Documentation:** The API includes Swagger annotations for automatic API documentation generation.
+- **Database:**  
+  - **H2 Database:** Initially used for persistence during development.  
+  - **PostgreSQL (Cloud):** Currently configured to use PostgreSQL, deployed in the cloud, for production-level persistence.
 
-404 Not Found: Resource not found
+### Swagger Endpoints
 
-500 Internal Server Error: Server-side error
+The API provides Swagger documentation, which can be accessed using the following endpoints:
 
-Note: All endpoints support CORS and are accessible from any origin
+| Endpoint           | Method | Description                                                      |
+|--------------------|--------|------------------------------------------------------------------|
+| `/swagger-ui.html` | GET    | Interactive Swagger UI for exploring the API endpoints.          |
+| `/v3/api-docs`     | GET    | JSON representation of the OpenAPI specification for the API.    |
+
+
