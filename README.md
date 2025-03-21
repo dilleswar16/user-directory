@@ -179,7 +179,7 @@ Retrieve user by Social Security Number.
 
 | Name | Type   | Description       |
 |------|--------|-------------------|
-| ssn  | String | SSN to search for |
+| ssn  | String | SSN to search     |
 
 
 **Example Request:**
