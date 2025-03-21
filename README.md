@@ -1,20 +1,5 @@
 # User Directory API
 
----
-
-## Table of Contents
-- [Overview](#overview)
-- [API Endpoints](#endpoints)
-  - [Load Users into Database](#load-users-into-database)
-  - [Get All Users](#get-all-users)
-  - [Get Users by Role](#get-users-by-role)
-  - [Get Users Sorted by Age](#get-users-sorted-by-age)
-  - [Get User by ID](#get-user-by-id)
-  - [Get User by SSN](#get-user-by-ssn)
-
-
-
----
 
 ## Overview
 
