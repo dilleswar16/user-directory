@@ -5,7 +5,8 @@
 
 A REST API for managing user data by loading from an external API and performing CRUD operations. Features include:
 - Loading user data from external API into H2 database
-- Retrieve users with filtering and sorting
+- Retrieving all users
+- Retrieve users with filtering(ROLE) and sorting(AGE)
 - Search users by ID or SSN
 
 **Base URL:** `https://user-directory-service.onrender.com/`
@@ -57,7 +58,7 @@ GET /api/users
     "age": 30,
     "role": "Developer"
   },
-  ...
+  ..
 ]
 ```
 
