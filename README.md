@@ -57,7 +57,7 @@ GET /api/users
     "age": 30,
     "role": "Developer"
   },
-  ...
+  ..
 ]
 ```
 
