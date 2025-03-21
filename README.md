@@ -24,9 +24,9 @@ POST /api/users/load
 Response:
 
 {
-  "message": "Successfully loaded 50 users into the database."
+  "message": "Successfully loaded ** users into the database."
 }
-Status Codes:
+```
 
 Status Codes:
 
