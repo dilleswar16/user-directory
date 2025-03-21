@@ -58,7 +58,7 @@ GET /api/users
     "age": 30,
     "role": "Developer"
   },
-  ..
+  ...
 ]
 ```
 
@@ -94,7 +94,8 @@ GET /api/users/role/admin
     "role": "ADMIN",
     "age": 30,
     "ssn": "123-45-6789"
-  }
+  },
+  ...
 ]
 
 ```
