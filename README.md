@@ -20,3 +20,12 @@ Fetch user data from external API and store in database.
 **Example Request:**
 ```http
 POST /api/users/load
+
+Response:
+
+json
+Copy
+{
+  "message": "Successfully loaded 50 users into the database."
+}
+Status Codes:
