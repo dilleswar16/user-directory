@@ -1,0 +1,15 @@
+package com.example.userapi.model;
+
+
+import javax.persistence.Embeddable;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Embeddable
+@Getter
+@Setter
+public class Hair {
+    private String color;
+    private String type;
+}
